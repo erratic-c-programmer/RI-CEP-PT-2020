@@ -123,7 +123,7 @@ def winner(fname):
         scores.append((i + 1, sum(t)))
 
     greatest = 0
-    for e in range(len(scores)):
+    for e in scores:
         if e[1] > scores[greatest][1]:
             greatest = i
 
