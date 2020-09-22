@@ -1,4 +1,5 @@
 #! /usr/bin/python3
+
 import csv
 from math import sqrt
 
@@ -15,19 +16,21 @@ def day_of_2009(day, month):
     cday %= 7
 
     if cday == 1:
-        return 'Monday'
+        ans = 'Monday'
     elif cday == 2:
-        return 'Tuesday'
+        ans = 'Tuesday'
     elif cday == 3:
-        return 'Wednesday'
+        ans = 'Wednesday'
     elif cday == 4:
-        return 'Thursday'
+        ans = 'Thursday'
     elif cday == 5:
-        return 'Friday'
+        ans = 'Friday'
     elif cday == 6:
-        return 'Saturday'
+        ans = 'Saturday'
     elif cday == 0:
-        return 'Sunday'
+        ans = 'Sunday'
+
+    return ans
 
 
 def test1():
@@ -46,18 +49,15 @@ test1()
 
 
 def is_harshad(n):
-    if not n % sum([int(x) for x in str(n)]):
-        return True
-    else:
-        return False
+    return not n % sum([int(x) for x in str(n)])
 
 
 def test2a():
     print('Q2a')
-    print(is_harshad(24) == True)
-    print(is_harshad(25) == False)
-    print(is_harshad(156) == True)
-    print(is_harshad(157) == False)
+    print(is_harshad(24))
+    print(not is_harshad(25))
+    print(is_harshad(156))
+    print(not is_harshad(157))
 
 
 test2a()
@@ -67,8 +67,9 @@ test2a()
 
 def harshad(n):
     while True:
-        if is_harshad(n): return n
-        else: n += 1
+        if is_harshad(n):
+            return n
+        n += 1
 
 
 def test2b():
@@ -84,20 +85,18 @@ test2b()
 
 
 def euclid_back(a, b):
-    r = a % b
-    if not r: return b
-    else:
-        a = b
-        b = r
-        return euclid_back(a, b)
+    rem = a % b
+    if not rem:
+        return b
+
+    a = b
+    b = rem
+    return euclid_back(a, b)
 
 
 def euclid(a, b):
     if a < b:
-        t = a
-        a = b
-        b = t
-
+        a, b = b, a
     return euclid_back(a, b)
 
 
@@ -114,18 +113,18 @@ test3()
 
 
 def winner(fname):
-    f = open(fname, 'r')
+    scorefile = open(fname, 'r')
     t = []
     scores = []
     for i in range(5):
         t = []
         for _ in range(4):
-            t.append(int(f.read(2)[0]))
+            t.append(int(scorefile.read(2)[0]))
         scores.append((i + 1, sum(t)))
 
     greatest = 0
-    for i in range(len(scores)):
-        if scores[i][1] > scores[greatest][1]:
+    for e in range(len(scores)):
+        if e[1] > scores[greatest][1]:
             greatest = i
 
     return scores[greatest]
@@ -161,10 +160,8 @@ def top_k_hashtag(fname, k):
     acc = {}
     occ = []
 
-    for r in read_csv(fname):
-        htags = r[3]
-        htags = htags.split(';')
-        for e in htags:
+    for cur in read_csv(fname):
+        for e in cur[3].split(';'):
             if e != '':
                 if e not in acc:
                     acc[e] = 1
@@ -218,7 +215,7 @@ class Money:
         return f'{(self.dol + self.cen/100) * 3.1:.2f}'
 
     def __add__(self, value):
-        return (Money(self.dol + value.dol, self.cen + value.cen))
+        return Money(self.dol + value.dol, self.cen + value.cen)
 
 
 def test6():
@@ -284,45 +281,33 @@ test7a()
 
 def zoom(grid, n):
     ans = []
+    t = []
     edgelen = len(grid[0])
     if edgelen == 0:
-        return [grid[0]]
+        t.append(grid[0])
 
-    if n == 0:
+    elif n == 0:
         for i in range(edgelen // 2):
-            t = []
             for j in range(edgelen // 2):
                 t.append(grid[i][j])
-
-            ans.append(t)
-        return ans
 
     elif n == 1:
         for i in range(edgelen // 2, edgelen):
-            t = []
             for j in range(edgelen // 2):
                 t.append(grid[i][j])
-
-            ans.append(t)
-        return ans
 
     elif n == 2:
         for i in range(edgelen // 2, edgelen):
-            t = []
             for j in range(edgelen // 2):
                 t.append(grid[i][j])
 
-            ans.append(t)
-        return ans
-
     elif n == 3:
         for i in range(edgelen // 2, edgelen):
-            t = []
             for j in range(edgelen // 2, edgelen):
                 t.append(grid[i][j])
 
-            ans.append(t)
-        return ans
+    ans.append(t)
+    return ans
 
 
 def test7b():
@@ -360,7 +345,7 @@ test7b()
 #Question 7c
 
 
-def quad_to_coor(s):
+def quad_to_coor(quad):
     pass
 
 
