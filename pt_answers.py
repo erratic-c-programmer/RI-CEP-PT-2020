@@ -235,9 +235,7 @@ def test6():
 
 test6()
 
-###Question 7###
-
-#Question 7a
+# Q7(a)
 
 
 def create_grid(n):
