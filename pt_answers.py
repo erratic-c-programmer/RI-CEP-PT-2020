@@ -16,31 +16,32 @@ def day_of_2009(day, month):
     cday %= 7
 
     if cday == 1:
-        ans = 'Monday'
+        ans = "Monday"
     elif cday == 2:
-        ans = 'Tuesday'
+        ans = "Tuesday"
     elif cday == 3:
-        ans = 'Wednesday'
+        ans = "Wednesday"
     elif cday == 4:
-        ans = 'Thursday'
+        ans = "Thursday"
     elif cday == 5:
-        ans = 'Friday'
+        ans = "Friday"
     elif cday == 6:
-        ans = 'Saturday'
+        ans = "Saturday"
     elif cday == 0:
-        ans = 'Sunday'
+        ans = "Sunday"
 
     return ans
 
 
 def test1():
-    print('Q1')
-    print(day_of_2009(1, 1) == 'Thursday')
-    print(day_of_2009(17, 1) == 'Saturday')
-    print(day_of_2009(25, 9) == 'Friday')
+    print("Q1")
+    print(day_of_2009(1, 1) == "Thursday")
+    print(day_of_2009(17, 1) == "Saturday")
+    print(day_of_2009(25, 9) == "Friday")
     print(
-        day_of_2009(25, 12) not in
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday', 'Sunday'])
+        day_of_2009(25, 12)
+        not in ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"]
+    )
 
 
 test1()
@@ -53,7 +54,7 @@ def is_harshad(n):
 
 
 def test2a():
-    print('Q2a')
+    print("Q2a")
     print(is_harshad(24))
     print(not is_harshad(25))
     print(is_harshad(156))
@@ -73,7 +74,7 @@ def harshad(n):
 
 
 def test2b():
-    print('Q2b')
+    print("Q2b")
     print(harshad(24) == 24)
     print(harshad(25) == 27)
     print(harshad(987654321) == 987654330)
@@ -101,7 +102,7 @@ def euclid(a, b):
 
 
 def test3():
-    print('Q3')
+    print("Q3")
     print(euclid(119, 544) == 17)
     print(euclid(544, 119) == 17)
     print(euclid(64, 8) == 8)
@@ -113,7 +114,7 @@ test3()
 
 
 def winner(fname):
-    scorefile = open(fname, 'r')
+    scorefile = open(fname, "r")
     t = []
     scores = []
     for i in range(5):
@@ -131,9 +132,9 @@ def winner(fname):
 
 
 def test4():
-    print('Q4')
-    print(winner('4_test1.txt') == (4, 19))
-    print(winner('4_test2.txt') == (2, 17))
+    print("Q4")
+    print(winner("4_test1.txt") == (4, 19))
+    print(winner("4_test2.txt") == (2, 17))
 
 
 test4()
@@ -161,8 +162,8 @@ def top_k_hashtag(fname, k):
     occ = []
 
     for cur in read_csv(fname):
-        for e in cur[3].split(';'):
-            if e != '':
+        for e in cur[3].split(";"):
+            if e != "":
                 if e not in acc:
                     acc[e] = 1
                 else:
@@ -177,19 +178,25 @@ def top_k_hashtag(fname, k):
 
 
 def test5():
-    print('Q5')
-    print(top_k_hashtag('donald-tweets.csv', 1) == ['Trump2016'])
+    print("Q5")
+    print(top_k_hashtag("donald-tweets.csv", 1) == ["Trump2016"])
     print(
-        top_k_hashtag('donald-tweets.csv', 2) ==
-        ['Trump2016', 'MakeAmericaGreatAgain'])
+        top_k_hashtag("donald-tweets.csv", 2) == ["Trump2016", "MakeAmericaGreatAgain"]
+    )
     print(
-        top_k_hashtag('donald-tweets.csv', 3) ==
-        ['Trump2016', 'MakeAmericaGreatAgain', 'MAGA'])
+        top_k_hashtag("donald-tweets.csv", 3)
+        == ["Trump2016", "MakeAmericaGreatAgain", "MAGA"]
+    )
     print(
-        top_k_hashtag('donald-tweets.csv', 5) == [
-            'Trump2016', 'MakeAmericaGreatAgain', 'MAGA', 'DrainTheSwamp',
-            'AmericaFirst'
-        ])
+        top_k_hashtag("donald-tweets.csv", 5)
+        == [
+            "Trump2016",
+            "MakeAmericaGreatAgain",
+            "MAGA",
+            "DrainTheSwamp",
+            "AmericaFirst",
+        ]
+    )
 
 
 test5()
@@ -203,7 +210,7 @@ class Money:
         self.cen = cents % 100
 
     def __str__(self):
-        return f'SGD$ {self.dol}.{self.cen}'
+        return f"SGD$ {self.dol}.{self.cen}"
 
     def get_dollars(self):
         return self.dol
@@ -212,22 +219,22 @@ class Money:
         return self.cen
 
     def get_MYR(self):
-        return f'{(self.dol + self.cen/100) * 3.1:.2f}'
+        return f"{(self.dol + self.cen/100) * 3.1:.2f}"
 
     def __add__(self, value):
         return Money(self.dol + value.dol, self.cen + value.cen)
 
 
 def test6():
-    print('Q6')
+    print("Q6")
     a = Money(5, 95)
     b = Money(10, 108)
     print(a.get_dollars() == 5)
     print(a.get_cents() == 95)
     print(b.get_dollars() == 11)
     print(b.get_cents() == 8)
-    print(a.get_MYR() == '18.45')
-    print(b.get_MYR() == '34.35')
+    print(a.get_MYR() == "18.45")
+    print(b.get_MYR() == "34.35")
     c = a + b
     print(c.get_dollars() == 17)
     print(c.get_cents() == 3)
@@ -240,9 +247,9 @@ test6()
 
 def create_grid(n):
     ans = []
-    for i in range(int(sqrt(4**n))):
+    for i in range(int(sqrt(4 ** n))):
         t = []
-        for j in range(int(sqrt(4**n))):
+        for j in range(int(sqrt(4 ** n))):
             t.append((j, i))
         ans.append(t)
 
@@ -250,31 +257,36 @@ def create_grid(n):
 
 
 def test7a():
-    print('Q7a')
+    print("Q7a")
     print(create_grid(0) == [[(0, 0)]])
     print(create_grid(1) == [[(0, 0), (1, 0)], [(0, 1), (1, 1)]])
     print(
-        create_grid(2) == [[(0, 0), (1, 0), (2, 0), (
-            3, 0)], [(0,
-                      1), (1,
-                           1), (2, 1), (3, 1)], [(0, 2), (1, 2), (2, 2), (
-                               3, 2)], [(0, 3), (1, 3), (2, 3), (3, 3)]])
+        create_grid(2)
+        == [
+            [(0, 0), (1, 0), (2, 0), (3, 0)],
+            [(0, 1), (1, 1), (2, 1), (3, 1)],
+            [(0, 2), (1, 2), (2, 2), (3, 2)],
+            [(0, 3), (1, 3), (2, 3), (3, 3)],
+        ]
+    )
     print(
-        create_grid(3) ==
-        [[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)],
-         [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)
-          ], [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (
-              7, 2
-          )], [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3)],
-         [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4)
-          ], [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5), (7, 5)],
-         [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6)],
-         [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7)]])
+        create_grid(3)
+        == [
+            [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)],
+            [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)],
+            [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2)],
+            [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3)],
+            [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4)],
+            [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5), (7, 5)],
+            [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6)],
+            [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7)],
+        ]
+    )
 
 
 test7a()
 
-#Question 7b
+# Question 7b
 
 
 def zoom(grid, n):
@@ -309,38 +321,57 @@ def zoom(grid, n):
 
 
 def test7b():
-    print('Q7b')
+    print("Q7b")
     print(
-        zoom([[(0, 0), (1, 0), (2, 0), (3, 0)], [(0, 1), (1, 1), (2, 1), (
-            3, 1)], [(0, 2), (1, 2), (2, 2), (
-                3, 2)], [(0, 3), (1, 3), (2, 3), (3, 3)]], 2) == [[(
-                    0, 2), (1, 2)], [(0, 3), (1, 3)]])
+        zoom(
+            [
+                [(0, 0), (1, 0), (2, 0), (3, 0)],
+                [(0, 1), (1, 1), (2, 1), (3, 1)],
+                [(0, 2), (1, 2), (2, 2), (3, 2)],
+                [(0, 3), (1, 3), (2, 3), (3, 3)],
+            ],
+            2,
+        )
+        == [[(0, 2), (1, 2)], [(0, 3), (1, 3)]]
+    )
     print(
-        zoom([[(0, 0), (1, 0), (2, 0), (3, 0)], [(0, 1), (1, 1), (2, 1), (
-            3, 1)], [(0, 2), (1, 2), (2, 2), (
-                3, 2)], [(0, 3), (1, 3), (2, 3), (3, 3)]], 3) == [[(
-                    2, 2), (3, 2)], [(2, 3), (3, 3)]])
+        zoom(
+            [
+                [(0, 0), (1, 0), (2, 0), (3, 0)],
+                [(0, 1), (1, 1), (2, 1), (3, 1)],
+                [(0, 2), (1, 2), (2, 2), (3, 2)],
+                [(0, 3), (1, 3), (2, 3), (3, 3)],
+            ],
+            3,
+        )
+        == [[(2, 2), (3, 2)], [(2, 3), (3, 3)]]
+    )
     print(
-        zoom([[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)],
-              [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)],
-              [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2)],
-              [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3)],
-              [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4)],
-              [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5), (7, 5)],
-              [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6)],
-              [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6,
-                                                                7), (7,
-                                                                     7)]], 2)
-        == [[(0, 4), (1, 4), (2, 4), (3, 4)], [(0, 5), (1, 5), (2, 5), (
-            3, 5)], [(0, 6), (1, 6), (2,
-                                      6), (3,
-                                           6)], [(0, 7), (1, 7), (2, 7), (3,
-                                                                          7)]])
+        zoom(
+            [
+                [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)],
+                [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)],
+                [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2)],
+                [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3)],
+                [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4)],
+                [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5), (7, 5)],
+                [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6)],
+                [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7)],
+            ],
+            2,
+        )
+        == [
+            [(0, 4), (1, 4), (2, 4), (3, 4)],
+            [(0, 5), (1, 5), (2, 5), (3, 5)],
+            [(0, 6), (1, 6), (2, 6), (3, 6)],
+            [(0, 7), (1, 7), (2, 7), (3, 7)],
+        ]
+    )
 
 
 test7b()
 
-#Question 7c
+# Question 7c
 
 
 def quad_to_coor(quad):
@@ -348,10 +379,10 @@ def quad_to_coor(quad):
 
 
 def test7c():
-    print('Q7c')
-    print(quad_to_coor('3') == (1, 1, 1))
-    print(quad_to_coor('130') == (3, 6, 2))
-    print(quad_to_coor('13012') == (5, 26, 9))
+    print("Q7c")
+    print(quad_to_coor("3") == (1, 1, 1))
+    print(quad_to_coor("130") == (3, 6, 2))
+    print(quad_to_coor("13012") == (5, 26, 9))
 
 
-#test7c()
+# test7c()
